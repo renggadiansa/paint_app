@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <com.github.gcacace.signaturepad.views.SignaturePad
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/signature_pad"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:penColor="@android:color/black"
+        android:layout_above="@+id/optionholder"
+        app:penMaxWidth="50dp"
+        app:penMinWidth="5dp"
+        />
+    <LinearLayout
+        android:id="@+id/optionholder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="4dp">
+            <SeekBar
+                android:id="@+id/pen_size"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:layout_height="wrap_content"
+                tools:ignore="Suspicious0dp" />
+            <TextView
+                android:id="@+id/pen_size_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Pen Size"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="4dp">
+           <ImageButton
+               android:id="@+id/btn_eraser"
+               android:layout_width="0dp"
+               android:layout_height="70dp"
+               android:background="@color/white"
+               android:scaleType="center"
+               android:src="@drawable/ic_eraser"
+                android:layout_weight="1"
+               tools:ignore="Suspicious0dp"/>
+            <ImageButton
+                android:id="@+id/btn_color"
+                android:layout_width="0dp"
+                android:layout_height="70dp"
+                android:background="@color/white"
+                android:scaleType="center"
+                android:src="@drawable/ic_color"
+                android:layout_weight="1"
+                tools:ignore="Suspicious0dp"/>
+            <ImageButton
+                android:id="@+id/btn_save"
+                android:layout_width="0dp"
+                android:layout_height="70dp"
+                android:background="@color/white"
+                android:scaleType="center"
+                android:src="@drawable/ic_save"
+                android:layout_weight="1"
+                tools:ignore="Suspicious0dp">
+
+           </ImageButton>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
