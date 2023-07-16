@@ -117,19 +117,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void saveImage() throws IOException {
-        File file = new File(fileName);
         Bitmap bitmap = signatureView.getSignatureBitmap();
+        if (bitmap != null) {
+            FileOutputStream fos = null;
+            try {
+                File directory = new File(Environment.getExternalStorageDirectory(), "Signature");
+                if (!directory.exists()) {
+                    directory.mkdirs();
+                }
 
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 0, bos);
-        byte[] bitmapData = bos.toByteArray();
+                String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss", Locale.getDefault()).format(new Date());
+                String fileName = "Signature_" + timeStamp + ".png";
+                File file = new File(directory, fileName);
 
-        FileOutputStream fos = new FileOutputStream(file);
-        fos.write(bitmapData);
-        fos.flush();
-        fos.close();
-        Toast.makeText(this, "Gambar disimpan", Toast.LENGTH_SHORT).show();
+                fos = new FileOutputStream(file);
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
+
+                Toast.makeText(this, "Gambar berhasil disimpan", Toast.LENGTH_SHORT).show();
+            } finally {
+                if (fos != null) {
+                    try {
+                        fos.flush();
+                        fos.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
     }
+
 
     private void openColorPicker() {
         AmbilWarnaDialog ambilWarnaDialog = new AmbilWarnaDialog(this, defaultColor, new AmbilWarnaDialog.OnAmbilWarnaListener() {
